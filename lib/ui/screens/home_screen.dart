@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_drawer/ui/screens/Favorite.dart';
+import 'package:flutter_drawer/ui/screens/Help.dart';
+import 'package:flutter_drawer/ui/screens/Notification.dart';
+import 'package:flutter_drawer/ui/screens/Privacy.dart';
+import 'package:flutter_drawer/ui/screens/Report.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -38,13 +43,68 @@ class HomeScreen extends StatelessWidget {
                       fontSize: 18,
                       fontWeight: FontWeight.w300,
                     ),
-                    )
+                    ),
                 ],
-              )
+              ),
+              const Divider(color: Colors.white),
+              _listItem(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const PrivacyScreen()));
+                },
+                icon: Icons.security_outlined, 
+                title: 'Privacy & Security',
+                ),
+              _listItem(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Favorite()));
+                },
+                icon: Icons.favorite_border, 
+                title: 'Favorite',
+                ),
+              _listItem(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationScreen()));
+                },
+                icon: Icons.notifications, 
+                title: 'Notification',
+                ),
+              const Divider(color: Colors.white),  
+              _listItem(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const HelpScreen()));
+                },
+                icon: Icons.help_rounded, 
+                title: 'Help',
+                ),
+              _listItem(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const ReportScreen()));
+                },
+                icon: Icons.report, 
+                title: 'Report',
+                ),        
             ],
           ),
         ),
       ),
+    );
+  }
+
+  _listItem({required IconData icon, required String title, required VoidCallback onTap}) {
+    return ListTile(
+      onTap: onTap,
+      iconColor: Colors.black,
+      textColor: Colors.black,
+      leading: Icon(
+        icon,
+        size: 30,
+        ),
+      title: Text(
+        title,
+        style: const TextStyle(
+          fontSize: 16,
+        ),
+        ),
     );
   }
 }
